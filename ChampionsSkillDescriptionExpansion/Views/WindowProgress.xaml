@@ -1,0 +1,24 @@
+﻿<Window x:Class="ChampionsSkillDescriptionExpansion.WindowProgress"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ChampionsSkillDescriptionExpansion"
+        mc:Ignorable="d"
+        Loaded="Window_Loaded"
+        Closed="Window_Closed"
+        Title="Description Expansion"
+        Height="400" Width="900" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Icon="/ChampionsSkillDescriptionExpansion;component/Assets/3041.png">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <StackPanel Visibility="{Binding VisProgress}">
+            <ProgressBar Margin="0,10,0,0" IsIndeterminate="True" Height="10" Width="200" />
+            <Button Margin="0,10,0,0" Content="Megszakít" HorizontalAlignment="Center" Click="BtnCancel_Click" />
+        </StackPanel>
+        <Button Content="Ablak bezárása" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{Binding VisCompleted, FallbackValue=Collapsed}" Click="Button_Click" />
+        <TextBox Name="txtMsg" Grid.Row="1" Margin="11" Text="{Binding Message}" IsReadOnly="True" TextWrapping="WrapWithOverflow" />
+    </Grid>
+</Window>

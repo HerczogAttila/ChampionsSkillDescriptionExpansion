@@ -1,0 +1,38 @@
+﻿<Window x:Class="ChampionsSkillDescriptionExpansion.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ChampionsSkillDescriptionExpansion"
+        mc:Ignorable="d"
+        Loaded="Window_Loaded"
+        FontSize="18"
+        Title="League of Legends Air Client Champion Skill Description Expansion" Height="600" Width="1000" WindowStartupLocation="CenterScreen" Icon="Assets/3041.png">
+    <Grid>
+        <StackPanel Visibility="{Binding VisMenu, FallbackValue=visible}" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <StackPanel Orientation="Horizontal"  HorizontalAlignment="Center">
+                <Label Content="API Verzió: " />
+                <Label Content="{Binding Config.Version}" />
+                <Label Content="?" ToolTip="A letöltött adatok verziószáma. Ha nem eggyezik meg a kliens verziószámával akkor ne használd a leírás bővítő funkciót!" Margin="20,0,0,0" />
+                <Button Content="Frissítések keresése" Margin="10,0,0,0" Click="BtnSearchUpdate_Click" />
+            </StackPanel>
+
+            <StackPanel Margin="0,10,0,0" Orientation="Horizontal" HorizontalAlignment="Center">
+                <Label Content="Nyelv:" />
+                <ComboBox ItemsSource="{Binding Languages}" SelectedIndex="{Binding LangIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedValue="{Binding Config.FullLang, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="230" />
+            </StackPanel>
+            <StackPanel Margin="0,10,0,0" Orientation="Horizontal"  HorizontalAlignment="Center">
+                <Button Content="Képességleírás kibővítése a választott nyelven" Click="BtnExpand_Click" />
+                <Label Content="?" ToolTip="Képesség leírások kibővítése. A folyamat eltarthat pár percig. A helyes működéshez ajánlott a 'League of Legends' klienst bezárni és a művelet befejeztével újraindítani." Margin="20,0,0,0" />
+            </StackPanel>
+            <StackPanel Margin="0,10,0,0" Orientation="Horizontal"  HorizontalAlignment="Center">
+                <Button Content="Eredeti leírások visszaállítása" Click="BtnRestoreBackup_Click" />
+                <Label Content="?" ToolTip="Visszaállítja a képességek leírását az eredeti állapotba." Margin="20,0,0,0" />
+            </StackPanel>
+        </StackPanel>
+
+        <TextBlock Margin="0,10,0,0" Visibility="{Binding VisUpToDate}" Text="Az alkalmazás a 'League of Legends' kliens frissítését érzékelte, de az API még nem tartalmazza a képesség leírások bővítéséhez szükséges legrfissebb adatokat. Ha használja leírás bővítő funkciót lehetséges, hogy a korábbi verzió adatai jelennek majd meg. Ha az API verzió megeggyezik a LoL kliens verziójával, akkor nincs probléma és ez az üzenet hibásan jelenik meg." TextWrapping="WrapWithOverflow" Foreground="Red" HorizontalAlignment="Center" />
+
+        <TextBlock Text="'Champion Skill Description Expansion' isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially involved in producing or managing League of Legends. League of Legends and Riot Games are trademarks or registered trademarks of Riot Games, Inc. League of Legends © Riot Games, Inc." TextWrapping="WrapWithOverflow" VerticalAlignment="Bottom" Margin="11" />
+    </Grid>
+</Window>
